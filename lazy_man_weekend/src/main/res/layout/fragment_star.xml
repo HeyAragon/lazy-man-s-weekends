@@ -1,13 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qianfeng.aragon.lazy_man_weekend.view.StarFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:background="#ffffff"
+    tools:context=".fragment.StarFragment">
     <TextView
+        android:id="@+id/star_fragment_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="懒人周末"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:gravity="center"
+        />
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/star_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:divider="#00ffffff"
+        android:layout_below="@id/star_fragment_title_bar"
+        >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</RelativeLayout>

@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qianfeng.aragon.lazy_man_weekend.MainActivity">
+    tools:context=".welcome.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_frame_layout"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#0000ff"
-         />
+        android:layout_height="match_parent" />
     <RadioGroup
         android:id="@+id/main_rg"
         android:layout_width="match_parent"
@@ -26,6 +24,7 @@
             android:drawableLeft="@drawable/main_rb_star_selector"
             android:layout_marginLeft="12dp"
             android:checked="true"
+
             />
         <RadioButton
             android:id="@+id/main_search_rb"

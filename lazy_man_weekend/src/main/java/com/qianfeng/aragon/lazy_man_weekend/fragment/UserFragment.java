@@ -1,4 +1,4 @@
-package com.qianfeng.aragon.lazy_man_weekend.view;
+package com.qianfeng.aragon.lazy_man_weekend.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +11,12 @@ import com.qianfeng.aragon.lazy_man_weekend.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SearchFragment.OnFragmentInteractionListener} interface
+ * {@link UserFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SearchFragment#newInstance} factory method to
+ * Use the {@link UserFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class UserFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,7 +26,7 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SearchFragment() {
+    public UserFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class SearchFragment extends Fragment {
      * @return A new instance of fragment StarFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
+    public static UserFragment newInstance() {
+        UserFragment fragment = new UserFragment();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -61,7 +61,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
         return view;
     }
 
