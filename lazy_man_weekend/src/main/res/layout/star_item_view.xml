@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFF7F7F7"
+    >
 
     <ImageView
         android:id="@+id/star_item_image_view"
@@ -61,7 +63,6 @@
             android:id="@+id/star_item_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="截止至2017年10月11日"
             android:textColor="@color/gray"
             android:background="@drawable/star_txt_shape"
             />
@@ -70,11 +71,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:drawableLeft="@drawable/heart_shape_small_off"
+            android:drawableLeft="@drawable/collect_selector"
             android:paddingLeft="10dp"
             android:text="  46人收藏"
             android:textColor="@color/gray"
             android:background="@drawable/star_txt_shape"
+            android:clickable="true"
             />
 
     </LinearLayout>
@@ -90,10 +92,10 @@
         android:layout_alignTop="@id/star_item_linear_layout"
         />
     <TextView
-        android:id="@+id/star_item_divider"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_below="@id/star_item_price"
-        android:textColor="#fdfbf8"/>
+        android:background="#FFF7F7F7"
+        />
 
 </RelativeLayout>

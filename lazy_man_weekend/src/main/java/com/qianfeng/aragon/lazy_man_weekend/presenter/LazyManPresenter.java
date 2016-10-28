@@ -1,9 +1,13 @@
 package com.qianfeng.aragon.lazy_man_weekend.presenter;
 
+import com.qianfeng.aragon.lazy_man_weekend.bean.CityBean;
 import com.qianfeng.aragon.lazy_man_weekend.bean.LazyManBean;
+import com.qianfeng.aragon.lazy_man_weekend.bean.SearchBean;
 import com.qianfeng.aragon.lazy_man_weekend.model.ILazyMan;
 import com.qianfeng.aragon.lazy_man_weekend.model.LazyMan;
-import com.qianfeng.aragon.lazy_man_weekend.view.ILazyManView;
+import com.qianfeng.aragon.lazy_man_weekend.view.ICityListView;
+import com.qianfeng.aragon.lazy_man_weekend.view.ISearchFragmentView;
+import com.qianfeng.aragon.lazy_man_weekend.view.IStarFragmentView;
 
 /**
  * Created by aragon on 2016/10/25.
@@ -11,28 +15,75 @@ import com.qianfeng.aragon.lazy_man_weekend.view.ILazyManView;
 public class LazyManPresenter implements IRequestCallback ,ILazyManPresenter{
 
     private ILazyMan lazyMan = new LazyMan();
-    private ILazyManView lazyManView ;
+    private IStarFragmentView starFragmentView ;
+    private ISearchFragmentView searchFragmentView;
+    private ICityListView cityListView;
 
-    public LazyManPresenter(ILazyManView lazyManView) {
-        this.lazyManView = lazyManView;
+    public LazyManPresenter(IStarFragmentView lazyManView) {
+        this.starFragmentView = lazyManView;
     }
 
+    public LazyManPresenter(ISearchFragmentView searchFragmentView) {
+        this.searchFragmentView = searchFragmentView;
+    }
+
+    public LazyManPresenter(ICityListView cityListView) {
+        this.cityListView = cityListView;
+    }
+
+
+
+    /**
+     * starFragment数据
+     * @param lazyManBean
+     */
     @Override
-    public void callback(LazyManBean lazyManBean) {
+    public void starCallback(LazyManBean lazyManBean) {
         if (lazyManBean == null) {
             return;
         }
-        this.lazyManView.refreshStarView(lazyManBean);
+        this.starFragmentView.refreshStarView(lazyManBean);
     }
 
     @Override
-    public void callback2(LazyManBean lazyManBean) {
+    public void transportStarData(String path) {
+        lazyMan.loadStarData(this,path);
+    }
 
+    //---------------------------------------------------------------------
+    /**
+     * searchFragment数据
+     * @param searchBean
+     */
+    @Override
+    public void searchCallback(SearchBean searchBean) {
+        if (searchBean == null) {
+            return;
+        }
+        this.searchFragmentView.refreshSearchView(searchBean);
     }
 
     @Override
-    public void transportStarData() {
-        lazyMan.loadStarData(this);
+    public void transportSearchData() {
+        lazyMan.loadSearchData(this);
+    }
+
+
+
+    //---------------------------------------------------------------------
+
+    @Override
+    public void cityListCallback(CityBean cityBean) {
+
+        if (cityBean == null) {
+            return;
+        }
+        this.cityListView.refreshCityListView(cityBean);
+    }
+
+    @Override
+    public void transportCityListData() {
+        lazyMan.loadCityListData(this);
     }
 
 }

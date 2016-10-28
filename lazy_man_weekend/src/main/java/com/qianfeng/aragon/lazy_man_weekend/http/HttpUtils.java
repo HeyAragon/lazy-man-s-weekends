@@ -44,7 +44,7 @@ public class HttpUtils {
            public void handleMessage(Message msg) {
                super.handleMessage(msg);
                String result = msg.obj.toString();
-               Log.i(TAG, "handleMessage: " + result);
+//               Log.i(TAG, "handleMessage: " + result);
                callBack.success(result);
            }
        };

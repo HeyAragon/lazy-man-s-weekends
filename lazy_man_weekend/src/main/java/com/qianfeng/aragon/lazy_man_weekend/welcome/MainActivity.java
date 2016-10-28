@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private CatFragment catFragment;
     private UserFragment userFragment;
     private FragmentManager supportFragmentManager;
-
+    private String path = "http://api.lanrenzhoumo.com/main/recommend/index?v=3&session_id=000040a3fb7d64ce1737c6c7bb3c7e4e157c91&lon=114.30963859310197&page=1&lat=30.575388756810078";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment() {
-        starFragment = new StarFragment();
+        starFragment = new StarFragment(path);
         searchFragment = new SearchFragment();
         catFragment = new CatFragment();
         userFragment = new UserFragment();

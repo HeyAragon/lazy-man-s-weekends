@@ -1,7 +1,10 @@
 package com.qianfeng.aragon.lazy_man_weekend.http;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.ImageView;
+
+import com.qianfeng.aragon.lazy_man_weekend.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,6 +14,7 @@ import java.util.concurrent.Executors;
  */
 public class ImageLoader {
 
+    private static final String TAG = "androidhy";
     private static ExecutorService executorService;
 
     private static void init() {
@@ -24,10 +28,12 @@ public class ImageLoader {
         //从内存中取数据
         Bitmap bitmap = MemoryCacheTool.read(path);
         if (bitmap == null) {
-
+            Log.i(TAG, "load: "+"网络加载数据"+path);
+            imageView.setImageResource(R.drawable.abcde);
             executorService.execute(new ImageThread(imageView, path));
         } else {
             imageView.setImageBitmap(bitmap);
+            Log.i(TAG, "load: "+"从内存中取数据");
 
         }
     }

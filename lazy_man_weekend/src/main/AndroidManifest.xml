@@ -3,6 +3,7 @@
     package="com.qianfeng.aragon.lazy_man_weekend">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +20,10 @@
         <activity android:name=".welcome.MainActivity" />
         <activity android:name=".welcome.GuideActivity" />
         <activity android:name=".welcome.UserInfoActivity" />
-        <activity android:name=".welcome.ChooseInterestingActivity"></activity>
+        <activity android:name=".welcome.ChooseInterestingActivity" />
+        <activity android:name=".CityActivity" />
+        <activity android:name=".CityActivityDetails"></activity>
+        <activity android:name=".welcome.SearchFragmentDetailActivity" />
     </application>
 
 </manifest>

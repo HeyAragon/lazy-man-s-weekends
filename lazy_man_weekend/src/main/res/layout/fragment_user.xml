@@ -4,10 +4,77 @@
     android:layout_height="match_parent"
     tools:context=".fragment.StarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="user" />
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/user_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/person_bg_unlogin"
+            />
+        <ImageView
+            android:id="@+id/little_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/default_avatar"
+            android:layout_alignBottom="@id/user_background"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-38dp"
+            />
+
+        <RadioGroup
+            android:id="@+id/user_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignBottom="@id/little_cat"
+            android:layout_marginBottom="-80dp"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/ic_person_order"
+                android:text="我预定的"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/gray"
+                android:layout_marginTop="-18dp"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/ic_person_order"
+                android:text="兴趣标签"
+                android:gravity="center"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/gray"
+                android:layout_marginTop="-18dp"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/ic_person_order"
+                android:text="设置"
+                android:gravity="center"
+                android:layout_weight="1"
+                />
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </FrameLayout>

@@ -1,14 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ff00"
     tools:context=".fragment.StarFragment">
+    <RelativeLayout
+        android:id="@+id/search_fragment_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFF7F7F7"
+        >
+        <Button
+            android:id="@+id/search_fragment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:text="武汉"
+            android:drawableRight="@drawable/text_down_arrow"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/search_fragment_btn"
+            android:layout_alignParentBottom="true"
+            android:drawableTint="@color/gray"
+            />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    </RelativeLayout>
+    <GridView
+        android:id="@+id/search_fragment_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="search" />
+        android:numColumns="2"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/search_fragment_relative_layout"
+        >
 
-</FrameLayout>
+    </GridView>
+
+</RelativeLayout>

@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     tools:context=".fragment.StarFragment">
     <TextView
         android:id="@+id/star_fragment_title_bar"
@@ -14,7 +13,7 @@
         android:gravity="center"
         />
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/star_view_pager"
+        android:id="@+id/star_fragment_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#00ffffff"

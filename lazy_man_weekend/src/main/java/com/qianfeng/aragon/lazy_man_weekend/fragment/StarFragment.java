@@ -1,5 +1,6 @@
 package com.qianfeng.aragon.lazy_man_weekend.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,33 +16,44 @@ import com.qianfeng.aragon.lazy_man_weekend.bean.LazyManBean;
 import com.qianfeng.aragon.lazy_man_weekend.http.ImageLoader;
 import com.qianfeng.aragon.lazy_man_weekend.presenter.ILazyManPresenter;
 import com.qianfeng.aragon.lazy_man_weekend.presenter.LazyManPresenter;
-import com.qianfeng.aragon.lazy_man_weekend.view.ILazyManView;
+import com.qianfeng.aragon.lazy_man_weekend.view.IStarFragmentView;
 
 import java.util.List;
-
-public class StarFragment extends Fragment implements ILazyManView{
+@SuppressLint("ValidFragment")
+public class StarFragment extends Fragment implements IStarFragmentView{
+    private final static String ARG_PARAM1 = "hy";
+    private String cityName;
     private ILazyManPresenter lazyManPresenter;
     private List<LazyManBean.ResultBean> mResult;
     private PullToRefreshListView mListView;
     private MyBaseAdapter myBaseAdapter;
+    private String path = "http://api.lanrenzhoumo.com/main/recommend/index?v=3&session_id=000040a3fb7d64ce1737c6c7bb3c7e4e157c91&lon=114.30963859310197&page=1&lat=30.575388756810078";
+    private TextView title;
 
-    public static StarFragment newInstance() {
-        StarFragment fragment = new StarFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
+    public static StarFragment newInstance(String s,String path) {
+        StarFragment fragment = new StarFragment(path);
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1,s);
 //        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
+        fragment.setArguments(args);
         return fragment;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+    public StarFragment() {
+
+    }
+
+    public StarFragment(String path) {
+        this.path = path;
+    }
+
+        @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            cityName = getArguments().getString(ARG_PARAM1);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,13 +65,17 @@ public class StarFragment extends Fragment implements ILazyManView{
     }
 
     private  void initView(View view) {
-        mListView = (PullToRefreshListView) view.findViewById(R.id.star_view_pager);
+        mListView = (PullToRefreshListView) view.findViewById(R.id.star_fragment_view_pager);
+        title = (TextView)view.findViewById(R.id.star_fragment_title_bar);
+        if (cityName != null) {
+            title.setText(cityName);
+        }
         myBaseAdapter = new MyBaseAdapter();
         mListView.setAdapter(myBaseAdapter);
     }
     private  void loadData() {
         lazyManPresenter = new LazyManPresenter(this);
-        lazyManPresenter.transportStarData();
+        lazyManPresenter.transportStarData(path);
     }
 
 
@@ -68,6 +84,7 @@ public class StarFragment extends Fragment implements ILazyManView{
     public void refreshStarView(LazyManBean lazyManBean) {
         mResult = lazyManBean.getResult();
         myBaseAdapter.notifyDataSetChanged();
+
     }
 
 
@@ -113,8 +130,22 @@ public class StarFragment extends Fragment implements ILazyManView{
 
             viewHolder.tittle.setText(resultBean.getTitle());
             viewHolder.position.setText(resultBean.getPoi());
-            viewHolder.endTime.setText(resultBean.getTime_info());
+            if (resultBean.getTime_info() == "") {
+                viewHolder.endTime.setVisibility(View.INVISIBLE);
+
+            } else {
+                viewHolder.endTime.setText(resultBean.getTime_info());
+            }
+            int collected_num = resultBean.getCollected_num();
+
+            if (viewHolder.collect.isClickable()) {
+                ++collected_num;
+                viewHolder.collect.setText("  "+collected_num+"人收藏");
+            }
+
             viewHolder.collect.setText("  "+resultBean.getCollected_num()+"人收藏");
+
+
             viewHolder.price.setText("￥"+(int)resultBean.getPrice());
             viewHolder.style.setText(resultBean.getCategory());
             if (distance != 0) {
@@ -150,8 +181,5 @@ public class StarFragment extends Fragment implements ILazyManView{
             distance = (TextView) view.findViewById(R.id.star_item_distance);
             style = (TextView) view.findViewById(R.id.stat_item_style);
         }
-
-
-
     }
 }

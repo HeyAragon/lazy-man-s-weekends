@@ -21,8 +21,8 @@ public class ImageThread implements Runnable {
     /**
      * 规定图片的宽高像素最大是100个像素
      */
-//    public static final int MAX_WIDTH = 100;
-//    public static final int MAX_HEIGHT = 100;
+    public static final int MAX_WIDTH = 400;
+    public static final int MAX_HEIGHT = 200;
     /**
      * 图片地址
      */
@@ -70,24 +70,24 @@ public class ImageThread implements Runnable {
 
             //将图片流转换成Bitmap对象
             byte[] bytes = outputStream.toByteArray();
-//            //二次采样
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//            //仅仅获取图片的大小属性
-//            options.inJustDecodeBounds = true;
-//            //获取图片的大小 不加载图片的内容
-//            BitmapFactory.decodeByteArray(bytes, 0, bytes.length,options);
-//            int outWidth = options.outWidth;
-//            int outHeight = options.outHeight;
-//            //计算压缩比
-//            int widthRadio = outWidth/MAX_WIDTH;
-//            int heightRadio = outHeight/MAX_HEIGHT;
-//            int radio = widthRadio > heightRadio ? widthRadio : heightRadio;
-//            //加载图片的内容，并且对图片按照比率进行压缩
-//            options.inJustDecodeBounds = false;
-//            //配置图片压缩比
-//            options.inSampleSize = radio;
-//            //转化图片
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            //二次采样
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            //仅仅获取图片的大小属性
+            options.inJustDecodeBounds = true;
+            //获取图片的大小 不加载图片的内容
+            BitmapFactory.decodeByteArray(bytes, 0, bytes.length,options);
+            int outWidth = options.outWidth;
+            int outHeight = options.outHeight;
+            //计算压缩比
+            int widthRadio = outWidth/MAX_WIDTH;
+            int heightRadio = outHeight/MAX_HEIGHT;
+            int radio = widthRadio > heightRadio ? widthRadio : heightRadio;
+            //加载图片的内容，并且对图片按照比率进行压缩
+            options.inJustDecodeBounds = false;
+            //配置图片压缩比
+            options.inSampleSize = radio;
+            //转化图片
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length,options);
             //将Bitmap对象传递到主线程中
             Message message = mHandler.obtainMessage();
             message.obj = bitmap;
